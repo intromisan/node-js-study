@@ -101,8 +101,18 @@ main {
   cursor: pointer;
 }
 
+.btn.danger {
+  border: 1px solid salmon;
+  color: salmon;  
+}
+
 .btn:hover,
 .btn:active {
   background-color: #00695c;
+  color: white;
+}
+
+.btn.danger:hover {
+  background-color: salmon;
   color: white;
 }
