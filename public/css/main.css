@@ -10,10 +10,6 @@ body {
   font-family: 'Open Sans', sans-serif;
 }
 
-img {
-  max-width: 350px;
-}
-
 main {
   padding: 1rem;
   margin: auto;
@@ -25,6 +21,14 @@ form {
 
 .centered {
   text-align: center;
+}
+
+.image {
+  height: 20rem;
+}
+
+.image img {
+  height: 100%;
 }
 
 .main-header {
@@ -198,6 +202,17 @@ form {
 .btn:hover,
 .btn:active {
   background-color: #00695c;
+  color: white;
+}
+
+.btn.danger {
+  color: red;
+  border-color: red;
+}
+
+.btn.danger:hover,
+.btn.danger:active {
+  background: red;
   color: white;
 }
 
