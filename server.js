@@ -3,7 +3,7 @@ const bodyParser = require('body-parser');
 const path = require('path');
 
 const errorController = require('./controllers/error');
-const mongoConnect = require('./util/database').mongoConnect;
+const mongoose = require('mongoose');
 const User = require('./models/user');
 
 const app = express();
@@ -35,7 +35,9 @@ app.use(shopRouter);
 
 app.use(errorController.get404);
 
-mongoConnect(() => {
-    console.log('Working!');
+mongoose.connect('mongodb+srv://serge:Pa8633004329@cluster0.s0kyp.mongodb.net/test?authSource=admin&replicaSet=atlas-k4r12x-shard-0&readPreference=primary&appname=MongoDB%20Compass&ssl=true')
+.then(res => {
     app.listen(3000);
-});
+    console.log('Connected')
+})
+.catch(err => console.log(err));
