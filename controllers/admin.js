@@ -15,7 +15,7 @@ exports.getAddProduct = (req, res, next) => {
 exports.getProducts = (req, res, next) => {
   // req.user
   //   .getProducts()
-  Product.fetchAll()
+  Product.find()
     .then(products => {
       res.render('admin/products', {
         prods: products,
@@ -36,7 +36,7 @@ exports.getEditProduct = (req, res, next) => {
   const productId = req.params.productId;
   // req.user.
   //   getProducts({ where: { id: productId } })
-  Product.fetchById(productId)
+  Product.findById(productId)
     .then(product => {
       // const product = products[0];
       if (!product) {
@@ -84,9 +84,14 @@ exports.postEditProduct = (req, res, next) => {
   const updatedImageUrl = req.body.imageUrl;
   const updatedDescription = req.body.description;
 
-  const product = new Product(updatedTitle, updatedPrice, updatedImageUrl, updatedDescription, new ObjectId(prodId));
-  product
-    .save()
+  Product.findById(prodId)
+    .then(product => {
+      product.title = updatedTitle;
+      product.price = updatedPrice;
+      product.description = updatedDescription;
+      product.imageUrl = updatedImageUrl;
+      return product.save();
+    })
     .then(result => {
       console.log('Updated successfuly')
       res.redirect('/admin/products');
